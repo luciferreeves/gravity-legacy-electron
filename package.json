@@ -1,25 +1,13 @@
 {
-  "name": "angular-electron",
-  "version": "9.0.3",
-  "description": "Angular 11 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "gravity",
+  "version": "0.1.0",
+  "description": "The Missing Github Desktop Application",
+  "homepage": "https://github.com/luciferreeves/gravity",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Conrad Reeves",
+    "email": "bobbyskhs@gmail.com"
   },
-  "keywords": [
-    "angular",
-    "angular 11",
-    "electron",
-    "nodejs",
-    "typescript",
-    "spectron",
-    "eslint",
-    "sass",
-    "windows",
-    "mac",
-    "linux"
-  ],
+  "keywords": [],
   "main": "main.js",
   "private": true,
   "scripts": {
