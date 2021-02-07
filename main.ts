@@ -1,9 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron';
+import { app, BrowserWindow, ipcMain, nativeTheme, Menu } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 const githubOAuth = require('./modules/authenticator');
+const menuBuilder = require('./modules/menuBuilder');
+const mb = menuBuilder();
 require('dotenv').config();
+
+// Getting Menus
+
+const loggedOutMenu = Menu.buildFromTemplate(mb.getLoggedOutMenu());
+const loggedInMenu = Menu.buildFromTemplate(mb.getLoggedInMenu());
 
 // Github Auth Algorithm
 
@@ -34,10 +41,15 @@ const githubAuth = githubOAuth(config, windowParams);
 ipcMain.on('github-oauth', (event, arg) => {
   githubAuth.getAccessToken(options)
     .then(token => {
+      Menu.setApplicationMenu(loggedInMenu);
       event.sender.send('github-oauth-reply', token);
     }, err => {
       console.log('Error while getting token', err);
     });
+});
+
+ipcMain.on('set-logout-menu', (event, arg) => {
+  Menu.setApplicationMenu(loggedOutMenu);
 });
 
 let win: BrowserWindow = null;
