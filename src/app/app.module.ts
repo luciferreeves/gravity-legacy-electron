@@ -11,6 +11,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
+import { NgxElectronModule } from 'ngx-electron';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomeComponent } from './home/home.component';
 
@@ -23,6 +24,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   declarations: [AppComponent, LoginPageComponent, HomeComponent],
   imports: [
     BrowserModule,
+    NgxElectronModule,
     FormsModule,
     HttpClientModule,
     CoreModule,

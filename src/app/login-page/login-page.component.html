@@ -1,1 +1,13 @@
-<p>login-page works!</p>
+<div class="fullscreen">
+  <div class="floating">
+    <img src="../../assets/icons/favicon.512x512.png" alt="Gravity Logo" />
+    <h1>Welcome to Gravity!</h1>
+    <div class="themeCircles">
+        <div id="light" (click)="setTheme('light')" title="Set the light theme" class="light"></div>
+        <div id="dark"(click)="setTheme('dark')" title="Set the dark theme" class="dark"></div>
+        <div id="system" (click)="setTheme('system')" title="Set system theme" class="system selected"></div>
+    </div>
+  </div>
+  <button class="btn">Authenticate with GitHub</button>
+  <small (click)="showDataIsSafeDialog()"><u>Is my data safe?</u></small>
+</div>
