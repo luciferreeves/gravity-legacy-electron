@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ElectronService } from 'ngx-electron';
 
 @Component({
@@ -11,7 +12,7 @@ import { ElectronService } from 'ngx-electron';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private _electronService: ElectronService) { }
+  constructor(private _electronService: ElectronService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -47,7 +48,7 @@ export class LoginPageComponent implements OnInit {
       await this._electronService.ipcRenderer.invoke('dark-mode:system');
     }
   }
-  
+
   showDataIsSafeDialog() {
     const options = {
       type: 'info',
@@ -69,7 +70,8 @@ export class LoginPageComponent implements OnInit {
   authenticate() {
     this._electronService.ipcRenderer.send('github-oauth', 'getToken');
     this._electronService.ipcRenderer.on('github-oauth-reply', (event, { access_token }) => {
-      console.log(access_token);
+      localStorage.setItem('githubOAuthToken', access_token);
+      this.router.navigate(['home']);
     });
   }
 }
