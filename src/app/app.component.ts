@@ -19,6 +19,7 @@ export class AppComponent {
     console.log('AppConfig', AppConfig);
 
     if (localStorage.getItem('githubOAuthToken')) {
+      this.electronService.ipcRenderer.send('set-login-menu', 'logoutMenu');
       this.router.navigate(['home']);
     }
 

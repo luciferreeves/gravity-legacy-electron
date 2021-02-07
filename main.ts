@@ -11,7 +11,6 @@ require('dotenv').config();
 
 const loggedOutMenu = Menu.buildFromTemplate(mb.getLoggedOutMenu());
 const loggedInMenu = Menu.buildFromTemplate(mb.getLoggedInMenu());
-
 // Github Auth Algorithm
 
 const config = {
@@ -50,6 +49,10 @@ ipcMain.on('github-oauth', (event, arg) => {
 
 ipcMain.on('set-logout-menu', (event, arg) => {
   Menu.setApplicationMenu(loggedOutMenu);
+});
+
+ipcMain.on('set-login-menu', (event, arg) => {
+  Menu.setApplicationMenu(loggedInMenu);
 });
 
 let win: BrowserWindow = null;
