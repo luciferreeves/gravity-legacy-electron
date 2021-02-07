@@ -1,6 +1,44 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+const githubOAuth = require('./modules/authenticator');
+require('dotenv').config();
+
+// Github Auth Algorithm
+
+const config = {
+  clientId: process.env.GH_CLIENT_ID,
+  clientSecret: process.env.GH_CLIENT_SECRET,
+  authorizationUrl: 'http://github.com/login/oauth/authorize',
+  tokenUrl: 'https://github.com/login/oauth/access_token',
+  useBasicAuthorizationHeader: false,
+  redirectUri: 'gravity://auth'
+};
+
+const options = {
+  scope: 'repo,admin:repo_hook,admin:org,admin:public_key,admin:org_hook,gist,notifications,user,delete_repo,write:discussion,write:packages,read:packages,delete:packages,admin:gpg_key,workflow'
+};
+
+const windowParams = {
+  alwaysOnTop: true,
+  autoHideMenuBar: true,
+  webPreferences: {
+    nodeIntegration: false
+  },
+  title: 'Authorize Gravity'
+};
+
+const githubAuth = githubOAuth(config, windowParams);
+
+ipcMain.on('github-oauth', (event, arg) => {
+  githubAuth.getAccessToken(options)
+    .then(token => {
+      event.sender.send('github-oauth-reply', token);
+    }, err => {
+      console.log('Error while getting token', err);
+    });
+});
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),

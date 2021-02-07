@@ -29,7 +29,12 @@
     "lint": "ng lint"
   },
   "dependencies": {
-    "ngx-electron": "2.2.0"
+    "dotenv": "8.2.0",
+    "ngx-electron": "2.2.0",
+    "node-fetch": "2.6.1",
+    "object-assign": "4.1.1",
+    "pinkie-promise": "2.0.1",
+    "querystring": "0.2.0"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "10.0.1",

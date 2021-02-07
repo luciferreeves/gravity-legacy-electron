@@ -8,6 +8,6 @@
         <div id="system" (click)="setTheme('system')" title="Set system theme" class="system selected"></div>
     </div>
   </div>
-  <button class="btn">Authenticate with GitHub</button>
+  <button (click)="authenticate()" class="btn">Authenticate with GitHub</button>
   <small (click)="showDataIsSafeDialog()"><u>Is my data safe?</u></small>
 </div>

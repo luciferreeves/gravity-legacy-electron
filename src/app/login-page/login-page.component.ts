@@ -65,4 +65,11 @@ export class LoginPageComponent implements OnInit {
     });
 
   }
+
+  authenticate() {
+    this._electronService.ipcRenderer.send('github-oauth', 'getToken');
+    this._electronService.ipcRenderer.on('github-oauth-reply', (event, { access_token }) => {
+      console.log(access_token);
+    });
+  }
 }
