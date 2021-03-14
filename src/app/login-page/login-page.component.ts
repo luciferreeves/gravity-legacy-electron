@@ -72,6 +72,7 @@ export class LoginPageComponent implements OnInit {
     this._electronService.ipcRenderer.on('github-oauth-reply', (event, { access_token }) => {
       localStorage.setItem('githubOAuthToken', access_token);
       this.router.navigate(['home']);
+      window.location.reload();
     });
   }
 }
