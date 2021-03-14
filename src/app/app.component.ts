@@ -21,6 +21,8 @@ export class AppComponent {
     if (localStorage.getItem('githubOAuthToken')) {
       this.electronService.ipcRenderer.send('set-login-menu', 'logoutMenu');
       this.router.navigate(['home']);
+    } else {
+      this.router.navigate(['']);
     }
 
     if (electronService.isElectron) {

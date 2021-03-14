@@ -30,6 +30,7 @@
     "lint": "ng lint"
   },
   "dependencies": {
+    "@octokit/core": "3.2.5",
     "dotenv": "8.2.0",
     "ngx-electron": "2.2.0",
     "node-fetch": "2.6.1",
