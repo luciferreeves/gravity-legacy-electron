@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { NgxElectronModule } from 'ngx-electron';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -21,7 +22,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, HomeComponent],
+  declarations: [AppComponent, LoginPageComponent, HomeComponent, SidebarComponent],
   imports: [
     BrowserModule,
     NgxElectronModule,
